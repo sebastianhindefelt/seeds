@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <title>title</title>
+                <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+                <script src="seedlings.js"></script>
+                <script src="game.js"></script>
+                </head>
+    <body onload="init();">
+        <canvas id="demoCanvas" width="600" height="400"></canvas>
+    </body>
+    <script>
+        var stage;
+        var W = 600, H = 400;
+        var ZS = 20, GW = W/ZS, GH = H/ZS;
+        var grid = [[]];
+        function init() {
+            stage = new createjs.Stage("demoCanvas");
+            for(var i = 0; i < GW; i++){
+                grid[i] = [];
+                for(var j = 0; j < GH; j++){
+                    var rect = new createjs.Shape();
+                    var zone = new Zone(i,j,ZS,rect);
+                    grid[i][j] = zone;
+                    stage.addChild(rect);
+                }
+            }
+            grid[5][5].vegetation = new Vegetation(1.0, 25.0);
+            grid[5][5].types++;
+            
+            createjs.Ticker.setInterval(2000);
+            stage.update();
+        }
+    
+        createjs.Ticker.addEventListener("tick", handleTick);
+        function handleTick(event) {
+            for(var i = 1; i < GW-1; i++){
+                for(var j = 1; j < GH-1; j++){
+                    grid[i][j].update(grid);
+                    grid[i][j].draw(grid);
+                }
+            }
+            stage.update();
+        }
+    
+    
+    </script>
+
+
+</html>
