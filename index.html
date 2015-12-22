@@ -4,7 +4,6 @@
         <meta charset="utf-8">
             <title>title</title>
                 <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
-                <script src="seedlings.js"></script>
                 <script src="game.js"></script>
                 </head>
     <body onload="init();">
@@ -26,10 +25,11 @@
                     stage.addChild(rect);
                 }
             }
-            grid[5][5].vegetation = new Vegetation(1.0, 25.0);
-            grid[5][5].types++;
+            grid[5][5].vegetation = 60.0;
+            grid[5][10].herbivores = 60.0;
+            grid[15][10].carnivores = 60.0;
             
-            createjs.Ticker.setInterval(2000);
+            createjs.Ticker.setInterval(500);
             stage.update();
         }
     
@@ -38,6 +38,11 @@
             for(var i = 1; i < GW-1; i++){
                 for(var j = 1; j < GH-1; j++){
                     grid[i][j].update(grid);
+                }
+            }
+            for(var i = 1; i < GW-1; i++){
+                for(var j = 1; j < GH-1; j++){
+                    grid[i][j].locked = false;
                     grid[i][j].draw(grid);
                 }
             }
