@@ -7,3 +7,5 @@
     * Game idea: you are the seed master, and you control where the different species start out and then you need to get as much points as possible after a certain time (or until some species take over)
     * Idea: something like, carnivores are greedy, but if they go into a zone with too much herbivore they will be killed
 # Bugs
+
+    * The zones turn white in the beginning for some reason
